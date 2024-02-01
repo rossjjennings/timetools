@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "timetools"
+version = "0.1.0"
+authors = [
+    {name = "Ross Jennings", email = "rossjjennings@gmail.com"}
+]
+dependencies = [
+    "pytz",
+    "astropy",
+]
+
+[project.scripts]
+parsetime = "timetools.parsetime:main"
