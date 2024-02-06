@@ -8,8 +8,9 @@ version = "0.1.0"
 authors = [
     {name = "Ross Jennings", email = "rossjjennings@gmail.com"}
 ]
+requires-python = ">=3.9"
 dependencies = [
-    "pytz",
+    "tzlocal",
     "astropy",
 ]
 
