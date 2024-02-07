@@ -2,7 +2,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 from tzlocal import get_localzone
 
-def time_from_args(args):
+def datetime_from_args(args):
     try:
         tz = ZoneInfo(args[-1])
         args.pop()
@@ -32,5 +32,5 @@ def main():
     parser.add_argument("time", nargs='+', help="Time (YYYY-MM-DD [HH:MM:SS[.f]] [TZ])")
     args = parser.parse_args()
 
-    time = time_from_args(args.time)
-    print(f"{time.strftime('%Y-%m-%d %H:%M:%S %Z')} [{time.tzinfo}]")
+    time = datetime_from_args(args.time)
+    print(f"{time.strftime('%Y-%m-%d %H:%M:%S %Z%z')} [{time.tzinfo}]")

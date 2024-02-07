@@ -16,3 +16,4 @@ dependencies = [
 
 [project.scripts]
 parsetime = "timetools.parsetime:main"
+tzconv = "timetools.tzconv:main"
