@@ -2,12 +2,12 @@ from datetime import datetime
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 from tzlocal import get_localzone
 
-def datetime_from_args(args):
+def datetime_from_args(args, default_tz=None):
     try:
         tz = ZoneInfo(args[-1])
         args.pop()
     except ZoneInfoNotFoundError:
-        tz = get_localzone()
+        tz = get_localzone() if default_tz is None else default_tz
 
     timestr = 'T'.join(args)
     if timestr == 'now':
