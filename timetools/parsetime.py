@@ -17,9 +17,12 @@ def datetime_from_args(args):
             time = datetime.strptime(timestr, "%Y-%m-%d")
         except ValueError:
             try:
-                time = datetime.strptime(timestr, "%Y-%m-%dT%H:%M:%S")
+                time = datetime.strptime(timestr, "%Y-%m-%dT%H:%M")
             except ValueError:
-                time = datetime.strptime(timestr, "%Y-%m-%dT%H:%M:%S.%f")
+                try:
+                    time = datetime.strptime(timestr, "%Y-%m-%dT%H:%M:%S")
+                except ValueError:
+                    time = datetime.strptime(timestr, "%Y-%m-%dT%H:%M:%S.%f")
 
     time = time.replace(tzinfo=tz)
     return time
