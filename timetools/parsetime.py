@@ -11,7 +11,7 @@ def datetime_from_args(args, default_tz=None):
 
     timestr = 'T'.join(args)
     if timestr == 'now':
-        time = datetime.now()
+        time = datetime.now().astimezone(default_tz)
     else:
         try:
             time = datetime.strptime(timestr, "%Y-%m-%d")
