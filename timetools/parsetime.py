@@ -20,7 +20,7 @@ def datetime_from_args(args, default_tz=None):
     timestr = 'T'.join(args)
     if not '-' in timestr:
         # we weren't given a date, assume it's today
-        now = datetime.now().astimezone(default_tz)
+        now = datetime.now().astimezone(tz)
         if timestr == 'now':
             return now
         else:
