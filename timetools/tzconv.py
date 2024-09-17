@@ -1,4 +1,5 @@
-from zoneinfo import ZoneInfo
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+from tzlocal import get_localzone
 from timetools.parsetime import datetime_from_args
 
 def main():
@@ -10,7 +11,13 @@ def main():
     args = parser.parse_args()
 
     time = datetime_from_args(args.time)
-    newzone = ZoneInfo(args.newzone)
+    try:
+        newzone = ZoneInfo(args.newzone)
+    except ZoneInfoNotFoundError as e:
+        if args.newzone == 'local':
+            newzone = get_localzone()
+        else:
+            raise
     time = time.astimezone(newzone)
     if args.verbose:
         print(f"{time.strftime('%Y-%m-%d %H:%M:%S %Z%z')} [{time.tzinfo}]")

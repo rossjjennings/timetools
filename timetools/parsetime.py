@@ -7,6 +7,9 @@ def datetime_from_args(args, default_tz=None):
         tz = ZoneInfo(args[-1])
         args.pop()
     except ZoneInfoNotFoundError:
+        if args[-1] == 'local':
+            tz = get_localzone()
+            args.pop()
         if '-' in args[-1] or ':' in args[-1] or args[-1] == 'now':
             # no time zone was specified, assume default
             tz = get_localzone() if default_tz is None else default_tz
